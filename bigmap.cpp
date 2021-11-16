@@ -1,0 +1,116 @@
+/*
+ * bigmap.cpp
+ *
+ *  Created on: 15 нояб. 2021 г.
+ *      Author: rusfort
+ */
+
+#include "bigmap.h"
+
+Map::Map(int sizeX, int sizeY){
+	std::cout << "Initializing Map..." << std::endl;
+	Cell c1 = {1, CellStatus::CALM};
+	Cell c2 = {2, CellStatus::CALM};
+	Cell c3 = {3, CellStatus::CALM};
+	Cell c4 = {4, CellStatus::CALM};
+	std::vector<Cell> line1;
+	std::vector<Cell> line2;
+	for (int i = 0; i < sizeX * 2; ++i){
+		if (i < sizeX){
+			line1.push_back(c1);
+			line2.push_back(c3);
+		} else {
+			line1.push_back(c2);
+			line2.push_back(c4);
+		}
+	}
+	for (int i = 0; i < sizeY; ++i) _M.push_back(line1);
+	for (int i = 0; i < sizeY; ++i) _M.push_back(line2);
+}
+
+Map::~Map(){
+	_M.clear();
+	std::cout << "Map destroyed" << std::endl;
+}
+
+bool Map::setstate(size_t row, size_t col, CellStatus cs){
+	if (col >= _M.size()){
+		std::cout << "Error in setstate: column out of range" << std::endl;
+		return false;
+	}
+	if (row >= _M[0].size()){
+		std::cout << "Error in setstate: row out of range" << std::endl;
+		return false;
+	}
+	_M[col][row].status_ = cs;
+	return true;
+}
+
+bool Map::setowner(size_t row, size_t col, int owner){
+	if (col >= _M.size()){
+		std::cout << "Error in setowner: column out of range" << std::endl;
+		return false;
+	}
+	if (row >= _M[0].size()){
+		std::cout << "Error in setowner: row out of range" << std::endl;
+		return false;
+	}
+	_M[col][row].owner_ = owner;
+	return true;
+}
+
+bool Map::setcell(size_t row, size_t col, Cell c){
+	bool cset = true;
+	cset = cset & setowner(row, col, c.owner_);
+	cset = cset & setstate(row, col, c.status_);
+	return cset;
+}
+
+void Map::DrawLine(std::vector<Cell> line) const{
+	for(auto i : line){
+		std::cout << "│ " << i.owner_ << " ";
+	}
+	std::cout << "│" << std::endl;
+}
+
+void Map::DrawHorB(int pos) const{
+	size_t s = _M.at(0).size();
+	if (pos == 1)
+	{
+		std::cout << "┌";
+		for(size_t i = 0; i < s; ++i){
+			std::cout << "───";
+			if (i < s-1) std::cout << "┬";
+		}
+		std::cout << "┐";
+	}
+	if (pos == 2)
+	{
+		std::cout << "└";
+		for(size_t i = 0; i < s; ++i){
+			std::cout << "───";
+			if (i < s-1) std::cout << "┴";
+		}
+		std::cout << "┘";
+	}
+	if (pos == 0)
+	{
+		std::cout << "├";
+		for(size_t i = 0; i < s; ++i){
+			std::cout << "───";
+			if (i < s-1) std::cout << "┼";
+		}
+		std::cout << "┤";
+	}
+	std::cout << std::endl;
+}
+void Map::Draw() const{
+	DrawHorB(1);
+	size_t j = 0;
+	for (const auto& i : _M){
+		DrawLine(i);
+		++j;
+		if (j < _M.size()) DrawHorB(0);
+	}
+	DrawHorB(2);
+}
