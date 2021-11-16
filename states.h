@@ -15,6 +15,8 @@ struct Capital{
 	CellStatus status;
 };
 
-
+class State{
+	//TODO
+};
 
 #endif /* STATES_H_ */
