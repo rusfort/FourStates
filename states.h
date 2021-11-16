@@ -16,6 +16,13 @@ struct Capital{
 };
 
 class State{
+private:
+	int numstate;
+	Capital cap;
+	double power;
+	//Strategy strat; //TODO
+	//Territory terr; //TODO
+public:
 	//TODO
 };
 
