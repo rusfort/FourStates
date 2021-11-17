@@ -56,13 +56,4 @@ public:
 	~State(){}
 };
 
-class World{
-private:
-	std::vector<State> _W;
-public:
-	explicit World(const Map& M);
-	void Process();
-	~World();
-};
-
 #endif /* STATES_H_ */

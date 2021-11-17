@@ -8,13 +8,12 @@
 
 #include <iostream>
 #include <vector>
-#include "bigmap.h"
-#include "states.h"
+#include "world.h"
 using namespace std;
 
 int main() {
 	cout << "Starting..." << endl << endl;
-	Map M(7, 5);
-	M.Draw();
+	World W{7, 5};
+	W.getmap().Draw();
 	return 0;
 }

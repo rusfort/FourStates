@@ -23,24 +23,4 @@ void State::Process(){
 }
 
 
-// WORLD methods =========================================
 
-World::World(const Map& M){
-	for (int i = 0; i < 4; ++i){
-		State s(M, i + 1);
-		_W.push_back(s);
-	}
-}
-
-void World::Process(){
-	for (int i = 0; i < 4; ++i){
-		_W[i].Analysis();
-	}
-	for (int i = 0; i < 4; ++i){
-		_W[i].Process();
-	}
-}
-
-World::~World(){
-	_W.clear();
-}

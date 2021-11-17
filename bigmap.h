@@ -31,6 +31,7 @@ class Map{
 private:
 	std::vector<std::vector<Cell>> _M;
 public:
+	Map(){}
 	explicit Map(int sizeX, int sizeY);
 	// getters
 
