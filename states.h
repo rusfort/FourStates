@@ -8,6 +8,7 @@
 #ifndef STATES_H_
 #define STATES_H_
 
+#include <vector>
 #include "bigmap.h"
 #include "territory.h"
 
@@ -24,8 +25,15 @@ private:
 	Territory terr;
 public:
 	explicit State(const Map& M, int num);
+
+	// service functions
+
 	void RecalcPower();
-	void Process();
+	void Analysis();   // getting world data about the current situation
+	void Process();    // after analysing the situation the state makes a decision
+
+	// getters
+
 	inline int getnum() const{
 		return _numstate;
 	}
@@ -35,7 +43,26 @@ public:
 	inline Territory getterritory() const{
 		return terr;
 	}
+	inline Capital getcapital() const{
+		return cap;
+	}
+
+	// setters
+
+	//TODO
+
+	// destructor
+
 	~State(){}
+};
+
+class World{
+private:
+	std::vector<State> _W;
+public:
+	explicit World(const Map& M);
+	void Process();
+	~World();
 };
 
 #endif /* STATES_H_ */

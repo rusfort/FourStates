@@ -19,6 +19,23 @@ public:
 	explicit Territory(const Map& M, int owner){
 		//filling the list
 	}
+
+	// getters
+
+	inline bool is_empty(){
+		return T.empty();
+	}
+	inline int area(){
+		return T.size();
+	}
+	double whole_border_length(); //returns a length of border (MAY HAVE TO BE RELOCATED)
+
+	// setters
+
+	//
+
+	// destructor
+
 	~Territory(){}
 };
 
