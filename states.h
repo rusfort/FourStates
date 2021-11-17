@@ -9,21 +9,33 @@
 #define STATES_H_
 
 #include "bigmap.h"
+#include "territory.h"
 
 struct Capital{
-	int state;
-	CellStatus status;
+	Cell cell;
 };
 
 class State{
 private:
-	int numstate;
+	int _numstate;
 	Capital cap;
-	double power;
+	double _power = 0.0;
 	//Strategy strat; //TODO
-	//Territory terr; //TODO
+	Territory terr;
 public:
-	//TODO
+	explicit State(const Map& M, int num);
+	void RecalcPower();
+	void Process();
+	inline int getnum() const{
+		return _numstate;
+	}
+	inline int getpower() const{
+		return _power;
+	}
+	inline Territory getterritory() const{
+		return terr;
+	}
+	~State(){}
 };
 
 #endif /* STATES_H_ */

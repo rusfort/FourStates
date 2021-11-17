@@ -23,6 +23,8 @@ enum class CellStatus{
 struct Cell{
 	int owner_;
 	CellStatus status_;
+	int row;
+	int col;
 };
 
 class Map{

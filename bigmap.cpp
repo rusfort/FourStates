@@ -9,10 +9,10 @@
 
 Map::Map(int sizeX, int sizeY){
 	std::cout << "Initializing Map..." << std::endl;
-	Cell c1 = {1, CellStatus::CALM};
-	Cell c2 = {2, CellStatus::CALM};
-	Cell c3 = {3, CellStatus::CALM};
-	Cell c4 = {4, CellStatus::CALM};
+	Cell c1 = {1, CellStatus::CALM, 0, 0};
+	Cell c2 = {2, CellStatus::CALM, 0, 0};
+	Cell c3 = {3, CellStatus::CALM, 0, 0};
+	Cell c4 = {4, CellStatus::CALM, 0, 0};
 	std::vector<Cell> line1;
 	std::vector<Cell> line2;
 	for (int i = 0; i < sizeX * 2; ++i){
@@ -26,6 +26,11 @@ Map::Map(int sizeX, int sizeY){
 	}
 	for (int i = 0; i < sizeY; ++i) _M.push_back(line1);
 	for (int i = 0; i < sizeY; ++i) _M.push_back(line2);
+	for (int i = 0; i < sizeX * 2; ++i)
+		for (int j = 0; j < sizeY * 2; ++j){
+			_M[j][i].col = i;
+			_M[j][i].row = j;
+		}
 }
 
 Map::~Map(){
