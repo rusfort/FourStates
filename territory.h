@@ -16,9 +16,7 @@ private:
 	std::list<Cell> T;
 public:
 	Territory(){}
-	explicit Territory(const Map& M, int owner){
-		//filling the list
-	}
+	explicit Territory(const Map& M, int owner);
 
 	// getters
 

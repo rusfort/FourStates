@@ -10,6 +10,8 @@
 
 #include "bigmap.h"
 #include "states.h"
+#include <exception>
+#include <memory>
 
 class World{
 private:
@@ -23,6 +25,10 @@ public:
 	}
 	inline Map& getmaptochange(){
 		return M;
+	}
+	inline State& operator()(int snum){
+		if (snum < 1 || snum > 4) throw std::out_of_range("State number must be 1, 2, 3 or 4");
+		return _W[snum-1];
 	}
 	~World();
 };

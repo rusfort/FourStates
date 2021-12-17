@@ -44,6 +44,12 @@ public:
 	inline int getowner(size_t row, size_t col) const{
 		return getcell(row, col).owner_;
 	}
+	inline int getsizeX() const{
+		return _M.at(0).size();
+	}
+	inline int getsizeY() const{
+		return _M.size();
+	}
 
 	// setters
 

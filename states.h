@@ -18,7 +18,7 @@ struct Capital{
 
 class State{
 private:
-	int _numstate;
+	const int _numstate;
 	Capital cap;
 	double _power = 0.0;
 	//Strategy strat; //TODO
@@ -37,7 +37,7 @@ public:
 	inline int getnum() const{
 		return _numstate;
 	}
-	inline int getpower() const{
+	inline double getpower() const{
 		return _power;
 	}
 	inline Territory getterritory() const{
