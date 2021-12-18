@@ -25,12 +25,14 @@ private:
 	Territory terr;
 	int SX; //size X of the rectangle, which contains the whole territoty
 	int SY; //size Y of the rectangle, which contains the whole territoty
+	std::list<Cell> Border;
 public:
 	explicit State(const Map& M, int num, int x, int y);
 
 	// service functions
 
 	void RecalcPower();
+	void UpdateBorder();
 	void Analysis();   // getting world data about the current situation
 	void Process();    // after analysing the situation the state makes a decision
 	Cell& GetBestCapPlace(); // finds the best cell for capital

@@ -13,6 +13,7 @@ State::State(const Map& M, int num, int x, int y):
 	_numstate(num), terr(M, _numstate), SX(x), SY(y){
 	RecalcPower();
 	SetCap(GetBestCapPlace(), true);
+	UpdateBorder();
 }
 
 
@@ -26,6 +27,10 @@ void State::Process(){
 
 void State::RecalcPower(){
 	_power = 1.0 * terr.area();
+}
+
+void State::UpdateBorder(){
+	//TODO
 }
 
 Cell& State::getcell(int rw, int cl){
