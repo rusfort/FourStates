@@ -23,9 +23,16 @@ void World::Process(){
 	for (int i = 0; i < 4; ++i){
 		_W[i].Analysis();
 	}
+
+
+	//TESTS:
+	DoBattle(_W[0], _W[1], _W[1].getcell(2, 7));
+	//END TESTS.
+
 	for (int i = 0; i < 4; ++i){
 		_W[i].Process();
 	}
+
 	ReloadMap();
 }
 

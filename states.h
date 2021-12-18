@@ -61,6 +61,8 @@ public:
 		cap.cell = &c;
 		cap.cell->status_ = CellStatus::CAPITAL;
 	}
+	void CellCaptured (Cell& c);
+	void CellLost (const Cell& c);
 
 	// destructor
 

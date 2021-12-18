@@ -10,6 +10,7 @@
 
 #include "bigmap.h"
 #include "states.h"
+#include "battle.h"
 #include <exception>
 #include <memory>
 

@@ -83,7 +83,7 @@ bool Map::setcell(size_t row, size_t col, Cell c){
 void Map::DrawLine(std::vector<Cell> line) const{
 	for(auto i : line){
 		if (i.status_ != CellStatus::CAPITAL) std::cout << "│ " << i.owner_ << " ";
-		else std::cout << "│ * ";
+		else std::cout << "│ ★ ";
 	}
 	std::cout << "│" << std::endl;
 }

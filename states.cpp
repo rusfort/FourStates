@@ -21,6 +21,7 @@ void State::Analysis(){
 }
 void State::Process(){
 	//needs Strategy, Borders, etc.
+	RecalcPower();
 }
 
 void State::RecalcPower(){
@@ -40,13 +41,23 @@ Cell& State::GetBestCapPlace(){
 	case 1:
 		return getcell(1, 1);
 	case 2:
-		return getcell(SX - 2, 1);
+		return getcell(1, 2*SX - 2);
 	case 3:
-		return getcell(1, SY - 2);
+		return getcell(2*SY - 2, 1);
 	case 4:
-		return getcell(SX - 2, SY - 2);
+		return getcell(2*SY - 2, 2*SX - 2);
 	}
 	return getcell(0, 0);
 }
+
+void State::CellCaptured (Cell& c){
+	c.owner_ = _numstate;
+	c.status_ = CellStatus::NEUTRAL;
+	terr.getterr().push_back(c);
+}
+void State::CellLost (const Cell& c){
+	terr.getterr().remove(c);
+}
+
 
 
