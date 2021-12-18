@@ -32,6 +32,9 @@ void World::Process(){
 	for (int i = 0; i < 4; ++i){
 		_W[i].Process();
 	}
+	for (int i = 0; i < 4; ++i){
+		_W[i].UpdateMapLocal(M);
+	}
 
 	ReloadMap();
 }

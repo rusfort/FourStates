@@ -8,7 +8,6 @@
 #ifndef WORLD_H_
 #define WORLD_H_
 
-#include "bigmap.h"
 #include "states.h"
 #include "battle.h"
 #include <exception>

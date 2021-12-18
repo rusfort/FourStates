@@ -10,7 +10,8 @@
 // STATE methods =========================================
 
 State::State(const Map& M, int num, int x, int y):
-	_numstate(num), terr(M, _numstate), SX(x), SY(y){
+	_numstate(num), terr(M, _numstate),
+	SX(x), SY(y), WORLDMAP(M){
 	RecalcPower();
 	SetCap(GetBestCapPlace(), true);
 	UpdateBorder();
@@ -23,10 +24,15 @@ void State::Analysis(){
 void State::Process(){
 	//needs Strategy, Borders, etc.
 	RecalcPower();
+	UpdateBorder();
 }
 
 void State::RecalcPower(){
 	_power = 1.0 * terr.area();
+}
+
+void State::UpdateMapLocal(const Map& M){
+	WORLDMAP = M;
 }
 
 void State::UpdateBorder(){

@@ -25,6 +25,9 @@ public:
 	explicit Map(int sizeX, int sizeY);
 	// getters
 
+	inline std::vector<std::vector<Cell>> getMap() const{
+			return _M;
+	}
 	inline Cell getcell(size_t row, size_t col) const{
 		return _M.at(col).at(row);
 	}
@@ -52,6 +55,10 @@ public:
 	void DrawLine(std::vector<Cell> line) const; //draws a line of cells
 	void DrawHorB(int pos) const;                //draws horisontal borders
 	void Draw() const;                           //draws the Map
+	inline bool operator= (const Map& m){
+		_M = m.getMap();
+		return true;
+	}
 
 	// destructor
 
