@@ -15,6 +15,8 @@
 
 class World{
 private:
+	int WsizeX;
+	int WsizeY;
 	Map M;
 	std::vector<State> _W;
 public:
@@ -30,6 +32,8 @@ public:
 		if (snum < 1 || snum > 4) throw std::out_of_range("State number must be 1, 2, 3 or 4");
 		return _W[snum-1];
 	}
+	void ReloadCell(int rw, int cl);
+	void ReloadMap();
 	~World();
 };
 

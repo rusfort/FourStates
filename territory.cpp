@@ -16,3 +16,10 @@ Territory::Territory(const Map& M, int owner){
 	}
 }
 
+bool Territory::cellin(int rw, int cl){
+	for (auto i : T){
+		if (i.row == rw && i.col == cl) return true;
+	}
+	return false;
+}
+

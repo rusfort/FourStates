@@ -15,6 +15,8 @@ int main() {
 	cout << "Starting..." << endl << endl;
 	World W{7, 5};
 	W.getmap().Draw();
+	W.Process();
+	W.getmap().Draw();
 	cout << "State power is " << W(2).getpower() << endl;
 	return 0;
 }

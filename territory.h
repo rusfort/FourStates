@@ -29,7 +29,8 @@ public:
 	inline std::list<Cell>& getterr(){
 		return T;
 	}
-	double whole_border_length(); //returns a length of border (MAY HAVE TO BE RELOCATED)
+	bool cellin(int rw, int cl);  // returns true if the cell is owned by this state
+	double whole_border_length(); // returns a length of border (MAY HAVE TO BE RELOCATED)
 
 	// setters
 

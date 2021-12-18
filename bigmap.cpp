@@ -48,28 +48,28 @@ Map::~Map(){
 }
 
 bool Map::setstate(size_t row, size_t col, CellStatus cs){
-	if (col >= _M.size()){
+	if (col >= _M[0].size()){
 		std::cout << "Error in setstate: column out of range" << std::endl;
 		return false;
 	}
-	if (row >= _M[0].size()){
+	if (row >= _M.size()){
 		std::cout << "Error in setstate: row out of range" << std::endl;
 		return false;
 	}
-	_M[col][row].status_ = cs;
+	_M[row][col].status_ = cs;
 	return true;
 }
 
 bool Map::setowner(size_t row, size_t col, int owner){
-	if (col >= _M.size()){
+	if (col >= _M[0].size()){
 		std::cout << "Error in setowner: column out of range" << std::endl;
 		return false;
 	}
-	if (row >= _M[0].size()){
+	if (row >= _M.size()){
 		std::cout << "Error in setowner: row out of range" << std::endl;
 		return false;
 	}
-	_M[col][row].owner_ = owner;
+	_M[row][col].owner_ = owner;
 	return true;
 }
 
@@ -83,7 +83,7 @@ bool Map::setcell(size_t row, size_t col, Cell c){
 void Map::DrawLine(std::vector<Cell> line) const{
 	for(auto i : line){
 		if (i.status_ != CellStatus::CAPITAL) std::cout << "│ " << i.owner_ << " ";
-		else std::cout << "│ * "; // FIXME: NOT REACHED
+		else std::cout << "│ * ";
 	}
 	std::cout << "│" << std::endl;
 }
