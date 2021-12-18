@@ -26,6 +26,9 @@ public:
 	inline int area(){
 		return T.size();
 	}
+	inline std::list<Cell>& getterr(){
+		return T;
+	}
 	double whole_border_length(); //returns a length of border (MAY HAVE TO BE RELOCATED)
 
 	// setters

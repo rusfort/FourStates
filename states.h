@@ -13,7 +13,7 @@
 #include "territory.h"
 
 struct Capital{
-	Cell cell;
+	Cell* cell;
 };
 
 class State{
@@ -23,14 +23,20 @@ private:
 	double _power = 0.0;
 	//Strategy strat; //TODO
 	Territory terr;
+	int SX; //size X of the rectangle, which contains the whole territoty
+	int SY; //size Y of the rectangle, which contains the whole territoty
 public:
-	explicit State(const Map& M, int num);
+	explicit State(const Map& M, int num, int x, int y);
 
 	// service functions
 
 	void RecalcPower();
 	void Analysis();   // getting world data about the current situation
 	void Process();    // after analysing the situation the state makes a decision
+	Cell& GetBestCapPlace(); // finds the best cell for capital
+	inline bool iscap(const Cell& c) const{ // retuns whether a cell is a capital of state
+		return *(cap.cell) == c;
+	}
 
 	// getters
 
@@ -46,10 +52,15 @@ public:
 	inline Capital getcapital() const{
 		return cap;
 	}
+	Cell& getcell(int rw, int cl);
 
 	// setters
 
-	//TODO
+	inline void SetCap(Cell& c, bool init = false){ //sets a capital
+		if (!init) cap.cell->status_ = CellStatus::NEUTRAL;
+		cap.cell = &c;
+		cap.cell->status_ = CellStatus::CAPITAL;
+	}
 
 	// destructor
 

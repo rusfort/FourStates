@@ -20,7 +20,7 @@ private:
 public:
 	explicit World(int sizeX, int sizeY);
 	void Process();
-	inline Map getmap() const{
+	inline const Map& getmap() const{
 		return M;
 	}
 	inline Map& getmaptochange(){

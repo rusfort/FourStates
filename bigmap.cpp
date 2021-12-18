@@ -7,13 +7,17 @@
 
 #include "bigmap.h"
 
+bool operator== (const Cell& lhs, const Cell& rhs){
+	return (lhs.col == rhs.col && lhs.row == rhs.row);
+}
+
 Map::Map(int sizeX, int sizeY){
-	if (sizeX > 0 && sizeY > 0){
+	if (sizeX > 1 && sizeY > 1){
 		//std::cout << "Initializing Map..." << std::endl;
-		Cell c1 = {1, CellStatus::CALM, 0, 0};
-		Cell c2 = {2, CellStatus::CALM, 0, 0};
-		Cell c3 = {3, CellStatus::CALM, 0, 0};
-		Cell c4 = {4, CellStatus::CALM, 0, 0};
+		Cell c1(0, 0, 1);
+		Cell c2(0, 0, 2);
+		Cell c3(0, 0, 3);
+		Cell c4(0, 0, 4);
 		std::vector<Cell> line1;
 		std::vector<Cell> line2;
 		for (int i = 0; i < sizeX * 2; ++i){
@@ -38,7 +42,7 @@ Map::Map(int sizeX, int sizeY){
 }
 
 Map::~Map(){
-	int sizeY = _M.size();
+	//int sizeY = _M.size();
 	_M.clear();
 	//if (sizeY > 0) std::cout << "Map destroyed" << std::endl;
 }
@@ -78,7 +82,8 @@ bool Map::setcell(size_t row, size_t col, Cell c){
 
 void Map::DrawLine(std::vector<Cell> line) const{
 	for(auto i : line){
-		std::cout << "│ " << i.owner_ << " ";
+		if (i.status_ != CellStatus::CAPITAL) std::cout << "│ " << i.owner_ << " ";
+		else std::cout << "│ * "; // FIXME: NOT REACHED
 	}
 	std::cout << "│" << std::endl;
 }

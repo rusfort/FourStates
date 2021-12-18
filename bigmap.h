@@ -17,15 +17,30 @@ enum class CellStatus{
 	CALM,
 	NEUTRAL,
 	ATTACK,
-	DEFEND
+	DEFEND,
+	CAPITAL
 };
 
 struct Cell{
+	Cell(){
+		row = 0;
+		col = 0;
+		owner_ = 0;
+		status_ = CellStatus::CALM;
+	}
+	Cell(int rw, int cl, int ow){
+		row = rw;
+		col = cl;
+		owner_ = ow;
+		status_ = CellStatus::CALM;
+	}
 	int owner_;
 	CellStatus status_;
 	int row;
 	int col;
 };
+
+bool operator== (const Cell& lhs, const Cell& rhs);
 
 class Map{
 private:
