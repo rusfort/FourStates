@@ -129,3 +129,87 @@ void Map::Draw() const{
 	}
 	DrawHorB(2);
 }
+
+std::list<Neighbour> NBhood(const Map& M, const Cell& C){
+	std::list<Neighbour> NB;
+	int x0 = C.col;
+	int y0 = C.row;
+	int sx = M.getsizeX() - 1;
+	int sy = M.getsizeY() - 1;
+
+	if (x0 == 0){ //left side of the map
+		if (y0 == 0){
+			NB.push_back(ConvCellToNB(M.getcell(0, 1), NeighbourType::ORT));
+			NB.push_back(ConvCellToNB(M.getcell(1, 1), NeighbourType::DIAG));
+			NB.push_back(ConvCellToNB(M.getcell(1, 0), NeighbourType::ORT));
+		} else if (y0 == sy) {
+			NB.push_back(ConvCellToNB(M.getcell(sy - 1, 0), NeighbourType::ORT));
+			NB.push_back(ConvCellToNB(M.getcell(sy - 1, 1), NeighbourType::DIAG));
+			NB.push_back(ConvCellToNB(M.getcell(sy, 1), NeighbourType::ORT));
+		} else {
+			NB.push_back(ConvCellToNB(M.getcell(y0 - 1, 0), NeighbourType::ORT));
+			NB.push_back(ConvCellToNB(M.getcell(y0 - 1, 1), NeighbourType::DIAG));
+			NB.push_back(ConvCellToNB(M.getcell(y0, 1), NeighbourType::ORT));
+			NB.push_back(ConvCellToNB(M.getcell(y0 + 1, 1), NeighbourType::DIAG));
+			NB.push_back(ConvCellToNB(M.getcell(y0 + 1, 0), NeighbourType::ORT));
+		}
+		return NB;
+	}
+	if (x0 == sx){ //right side of the map
+		if (y0 == 0){
+			NB.push_back(ConvCellToNB(M.getcell(0, sx - 1), NeighbourType::ORT));
+			NB.push_back(ConvCellToNB(M.getcell(1, sx - 1), NeighbourType::DIAG));
+			NB.push_back(ConvCellToNB(M.getcell(1, sx), NeighbourType::ORT));
+		} else if (y0 == sy) {
+			NB.push_back(ConvCellToNB(M.getcell(sy - 1, sx), NeighbourType::ORT));
+			NB.push_back(ConvCellToNB(M.getcell(sy - 1, sx - 1), NeighbourType::DIAG));
+			NB.push_back(ConvCellToNB(M.getcell(sy, sx - 1), NeighbourType::ORT));
+		} else {
+			NB.push_back(ConvCellToNB(M.getcell(y0 - 1, sx), NeighbourType::ORT));
+			NB.push_back(ConvCellToNB(M.getcell(y0 - 1, sx - 1), NeighbourType::DIAG));
+			NB.push_back(ConvCellToNB(M.getcell(y0, sx - 1), NeighbourType::ORT));
+			NB.push_back(ConvCellToNB(M.getcell(y0 + 1, sx - 1), NeighbourType::DIAG));
+			NB.push_back(ConvCellToNB(M.getcell(y0 + 1, sx), NeighbourType::ORT));
+		}
+		return NB;
+	}
+	if (y0 == 0){ //top side without corners
+		NB.push_back(ConvCellToNB(M.getcell(0, x0 - 1), NeighbourType::ORT));
+		NB.push_back(ConvCellToNB(M.getcell(1, x0 - 1), NeighbourType::DIAG));
+		NB.push_back(ConvCellToNB(M.getcell(1, x0), NeighbourType::ORT));
+		NB.push_back(ConvCellToNB(M.getcell(1, x0 + 1), NeighbourType::DIAG));
+		NB.push_back(ConvCellToNB(M.getcell(0, x0 + 1), NeighbourType::ORT));
+		return NB;
+	}
+	if (y0 == sy){ //bottom side without corners
+		NB.push_back(ConvCellToNB(M.getcell(sy, x0 - 1), NeighbourType::ORT));
+		NB.push_back(ConvCellToNB(M.getcell(sy - 1, x0 - 1), NeighbourType::DIAG));
+		NB.push_back(ConvCellToNB(M.getcell(sy - 1, x0), NeighbourType::ORT));
+		NB.push_back(ConvCellToNB(M.getcell(sy - 1, x0 + 1), NeighbourType::DIAG));
+		NB.push_back(ConvCellToNB(M.getcell(sy, x0 + 1), NeighbourType::ORT));
+		return NB;
+	}
+	//default position in the middle:
+	NB.push_back(ConvCellToNB(M.getcell(y0, x0 - 1), NeighbourType::ORT));
+	NB.push_back(ConvCellToNB(M.getcell(y0 - 1, x0 - 1), NeighbourType::DIAG));
+	NB.push_back(ConvCellToNB(M.getcell(y0 - 1, x0), NeighbourType::ORT));
+	NB.push_back(ConvCellToNB(M.getcell(y0 - 1, x0 + 1), NeighbourType::DIAG));
+	NB.push_back(ConvCellToNB(M.getcell(y0, x0 + 1), NeighbourType::ORT));
+	NB.push_back(ConvCellToNB(M.getcell(y0 + 1, x0 + 1), NeighbourType::DIAG));
+	NB.push_back(ConvCellToNB(M.getcell(y0 + 1, x0), NeighbourType::ORT));
+	NB.push_back(ConvCellToNB(M.getcell(y0 + 1, x0 - 1), NeighbourType::DIAG));
+
+	return NB;
+}
+
+size_t NB_contains(const std::list<Neighbour>& NB, int owner){
+	size_t n = 0;
+	for (auto i : NB){
+		if (i.owner_ == owner) ++n;
+	}
+	return n;
+}
+
+bool NB_sameowner(const std::list<Neighbour>& NB, int owner){
+	return (NB_contains(NB, owner) == NB.size());
+}

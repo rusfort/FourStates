@@ -7,4 +7,6 @@
 
 #include "cell.h"
 
-
+Neighbour ConvCellToNB (const Cell& C, NeighbourType t){
+	return Neighbour(C.row, C.col, C.owner_, C.status_, t);
+}

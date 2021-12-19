@@ -10,7 +10,7 @@
 Territory::Territory(const Map& M, int owner){
 	for (int i = 0; i < M.getsizeX(); ++i){
 		for (int j = 0; j < M.getsizeY(); ++j){
-			auto c = M.getcell(i, j);
+			auto c = M.getcell(j, i);
 			if (c.owner_ == owner) T.push_back(c);
 		}
 	}

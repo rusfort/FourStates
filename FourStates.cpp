@@ -18,5 +18,9 @@ int main() {
 	W.Process();
 	W.getmap().Draw();
 	cout << "State power is " << W(2).getpower() << endl;
+	cout << "Cell has " << NB_contains(NBhood(W.getmap(), W.getmap().getcell(2, 7)), 1) << " neighbours of owner 1" << endl;
+	cout << "Cell has " << NB_contains(NBhood(W.getmap(), W.getmap().getcell(2, 7)), 2) << " neighbours of owner 2" << endl;
+	cout << "Cell has " << NB_contains(NBhood(W.getmap(), W.getmap().getcell(9, 6)), 1) << " neighbours of owner 1" << endl;
+	cout << "Cell has " << NB_contains(NBhood(W.getmap(), W.getmap().getcell(9, 6)), 4) << " neighbours of owner 4" << endl;
 	return 0;
 }

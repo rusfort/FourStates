@@ -29,7 +29,7 @@ public:
 			return _M;
 	}
 	inline Cell getcell(size_t row, size_t col) const{
-		return _M.at(col).at(row);
+		return _M.at(row).at(col);
 	}
 	inline CellStatus getstate(size_t row, size_t col) const{
 		return getcell(row, col).status_;
@@ -64,5 +64,11 @@ public:
 
 	~Map();
 };
+
+std::list<Neighbour> NBhood(const Map& M, const Cell& C); //neighbourhood of the cell
+
+size_t NB_contains(const std::list<Neighbour>& NB, int owner); //returns how many cells of the specific owner the neighbourhood contains
+
+bool NB_sameowner(const std::list<Neighbour>& NB, int owner); //if the whole neighbourhood contains the same owner
 
 #endif /* BIGMAP_H_ */

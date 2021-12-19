@@ -8,6 +8,8 @@
 #ifndef CELL_H_
 #define CELL_H_
 
+#include <list>
+
 enum class CellStatus{
 	CALM,
 	NEUTRAL,
@@ -37,6 +39,23 @@ public:
 	}
 
 };
+
+enum class NeighbourType{
+	ORT, //horisontal or vertical
+	DIAG //diagonal
+};
+
+class Neighbour : public Cell{
+public:
+	NeighbourType type;
+
+	Neighbour(int rw, int cl, int ow, CellStatus st, NeighbourType tp):
+		Cell(rw, cl, ow), type(tp) {
+		status_ = st;
+	}
+};
+
+Neighbour ConvCellToNB (const Cell& C, NeighbourType t);
 
 
 
