@@ -23,12 +23,14 @@ void State::Analysis(){
 }
 void State::Process(){
 	//needs Strategy, Borders, etc.
-	RecalcPower();
+
 	UpdateBorder();
+	RecalcPower();
 }
 
 void State::RecalcPower(){
 	_power = 1.0 * terr.area();
+	if (borderlen() > 0) _power /= borderlen();
 }
 
 void State::UpdateMapLocal(const Map& M){
@@ -36,7 +38,10 @@ void State::UpdateMapLocal(const Map& M){
 }
 
 void State::UpdateBorder(){
-	//TODO
+	Border.clear();
+	for (auto i : terr.getterr()){
+		if (!NB_sameowner(NBhood(WORLDMAP, i), _numstate)) Border.push_back(i);
+	}
 }
 
 Cell& State::getcell(int rw, int cl){
@@ -65,9 +70,13 @@ void State::CellCaptured (Cell& c){
 	c.owner_ = _numstate;
 	c.status_ = CellStatus::NEUTRAL;
 	terr.getterr().push_back(c);
+	WORLDMAP.setcell(c.row, c.col, c);
 }
 void State::CellLost (const Cell& c){
 	terr.getterr().remove(c);
+	Cell newc = c;
+	newc.owner_ = 0;
+	WORLDMAP.setcell(newc.row, newc.col, newc);
 }
 
 

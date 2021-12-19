@@ -57,6 +57,9 @@ public:
 		return cap;
 	}
 	Cell& getcell(int rw, int cl);
+	inline size_t borderlen(){
+		return Border.size();
+	}
 
 	// setters
 
