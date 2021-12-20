@@ -59,6 +59,9 @@ public:
 	inline Map getmaplocalcopy() const{
 		return WORLDMAP;
 	}
+	inline std::list<Cell> getborder() const{
+		return Border;
+	}
 	Cell& getcell(int rw, int cl);
 	inline size_t borderlen() const{
 		return Border.size();

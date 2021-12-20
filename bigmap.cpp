@@ -203,6 +203,15 @@ std::list<Neighbour> NBhood(const Map& M, const Cell& C){
 	return NB;
 }
 
+std::list<Cell> getnbstate(const Map& M, const Cell& C, int numstate){
+	std::list<Cell> N;
+	auto NB = NBhood(M, C);
+	for (auto i : NB){
+		if (i.owner_ == numstate) N.push_back(ConvNBToCell(i));
+	}
+	return N;
+}
+
 size_t NB_contains(const std::list<Neighbour>& NB, int owner){
 	size_t n = 0;
 	for (auto i : NB){

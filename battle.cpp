@@ -22,7 +22,12 @@ std::pair<bool, Cell> TryBattle(const State& a, const State& d){
 	bool res = false;
 	Cell c;
 
-	//TODO
+	for (auto i : a.getborder()){
+		auto L = getnbstate(a.getmaplocalcopy(), i, d.getnum());
+		for (auto j : L){
+			if (CanCaptCell(a, j)) return std::make_pair(true, j);
+		}
+	}
 
 	return std::make_pair(res, c);
 }

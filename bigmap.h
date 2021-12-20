@@ -44,8 +44,9 @@ public:
 	inline int getsizeY() const{
 		return _M.size();
 	}
-	inline double getstatepower(int statenum){
-		if (statenum > 0 && statenum < 5) return State_Powers[statenum];
+	inline double getstatepower(int statenum) const{
+		if (State_Powers.empty()) return 0.0;
+		if (statenum > 0 && statenum < 5) return State_Powers.at(statenum);
 		return 0.0;
 	}
 
@@ -62,6 +63,8 @@ public:
 	void Draw() const;                           //draws the Map
 	inline bool operator= (const Map& m){
 		_M = m.getMap();
+		State_Powers.clear();
+		for (int i = 0; i < 5; ++i) State_Powers.push_back(m.getstatepower(i));
 		return true;
 	}
 	inline void update_state_power(int statenum, double power){
@@ -75,6 +78,8 @@ public:
 };
 
 std::list<Neighbour> NBhood(const Map& M, const Cell& C); //neighbourhood of the cell
+
+std::list<Cell> getnbstate(const Map& M, const Cell& C, int numstate); //the list of a neighbouring state cells
 
 size_t NB_contains(const std::list<Neighbour>& NB, int owner); //returns how many cells of the specific owner the neighbourhood contains
 

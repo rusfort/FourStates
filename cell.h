@@ -57,7 +57,7 @@ public:
 
 Neighbour ConvCellToNB (const Cell& C, NeighbourType t);
 
-
+Cell ConvNBToCell (const Neighbour& N);
 
 
 #endif /* CELL_H_ */

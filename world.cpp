@@ -27,6 +27,10 @@ void World::Process(){
 
 	//TESTS:
 	DoBattle(_W[0], _W[1], _W[1].getcell(2, 7));
+	auto t = TryBattle(_W[0], _W[1]); //NEEDS A "WAR" FUNCTION IN BATTLE.H
+	if (t.first){
+		DoBattle(_W[0], _W[1], t.second);
+	}
 	//END TESTS.
 
 	for (int i = 0; i < 4; ++i){
