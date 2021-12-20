@@ -7,6 +7,17 @@
 
 #include "battle.h"
 
+bool CanCaptCell(const State& a, const Cell& c){
+	auto M = a.getmaplocalcopy();
+	auto NB = NBhood(M, c);
+	auto attack_pow = a.getpower() * NB_contains(NB, a.getnum());
+	auto defend_pow = M.getstatepower(c.owner_) * NB_contains(NB, c.owner_);
+
+	if (attack_pow > defend_pow) return true; // very basic, but ok
+
+	return false;
+}
+
 std::pair<bool, Cell> TryBattle(const State& a, const State& d){
 	bool res = false;
 	Cell c;

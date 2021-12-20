@@ -56,8 +56,11 @@ public:
 	inline Capital getcapital() const{
 		return cap;
 	}
+	inline Map getmaplocalcopy() const{
+		return WORLDMAP;
+	}
 	Cell& getcell(int rw, int cl);
-	inline size_t borderlen(){
+	inline size_t borderlen() const{
 		return Border.size();
 	}
 

@@ -20,6 +20,7 @@ bool operator== (const Cell& lhs, const Cell& rhs);
 class Map{
 private:
 	std::vector<std::vector<Cell>> _M;
+	std::vector<double> State_Powers;
 public:
 	Map(){}
 	explicit Map(int sizeX, int sizeY);
@@ -43,6 +44,10 @@ public:
 	inline int getsizeY() const{
 		return _M.size();
 	}
+	inline double getstatepower(int statenum){
+		if (statenum > 0 && statenum < 5) return State_Powers[statenum];
+		return 0.0;
+	}
 
 	// setters
 
@@ -59,6 +64,10 @@ public:
 		_M = m.getMap();
 		return true;
 	}
+	inline void update_state_power(int statenum, double power){
+		if (statenum > 0 && statenum < 5) State_Powers[statenum] = power;
+	}
+	//inline void upd_all_spowers();
 
 	// destructor
 

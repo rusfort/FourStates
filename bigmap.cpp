@@ -36,6 +36,7 @@ Map::Map(int sizeX, int sizeY){
 				_M[j][i].col = i;
 				_M[j][i].row = j;
 			}
+		for (int i = 0; i < 5; ++i) State_Powers.push_back(0);
 	} else {
 		std::cout << "Error in generating map: size out of range" << std::endl;
 	}

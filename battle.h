@@ -11,6 +11,9 @@
 #include "states.h"
 #include <map>
 
+//returns true if the attacker state (a) can capture the cell (c)
+bool CanCaptCell(const State& a, const Cell& c);
+
 //returns true if the attacker state (a) can win the battle over defender's state (d) cell
 std::pair<bool, Cell> TryBattle(const State& a, const State& d);
 

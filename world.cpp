@@ -31,6 +31,7 @@ void World::Process(){
 
 	for (int i = 0; i < 4; ++i){
 		_W[i].Process();
+		M.update_state_power(_W[i].getnum(), _W[i].getpower());
 	}
 	for (int i = 0; i < 4; ++i){
 		_W[i].UpdateMapLocal(M);
